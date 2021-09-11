@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <title>Document</title>
+  <style>
+    .active {
+      border: 1px solid red;
+    }
+
+    .text-danger {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- リアルDOM -->
+
+  <!--仮想DOM-->
+  <div id="app">
+    <div v-show="isDisplay">show表示</div>
+    <div v-show="!isDisplay">show false</div>
+
+    <div v-if="isDisplay">if表示</div>
+    <div v-if="!isDisplay">if false</div>
+
+    <div v-if="signal === 'red'">赤</div>
+    <div v-else-if="signal === 'yellow'">黄</div>
+    <div v-else-if="signal === 'blue'">青</div>
+    <div v-else>赤黄青どれでもない</div>
+  </div>
+
+  <script>
+    let app = new Vue({
+      el: '#app', // 仮想DOM
+      data() {
+        return {
+          isDisplay: false,
+          signal: 'yellow'
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>
