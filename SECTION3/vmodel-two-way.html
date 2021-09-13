@@ -17,8 +17,8 @@
   <div id="app">
     <form>
       氏名<input type="text" v-model="contact.yourName"><br>
-      電話番号<input type="tel" v-model="contact.tel"><br>
-      メールアドレス<input type="email" v-model="contact.email"><br>
+      電話番号<input type="tel" v-model.number="contact.tel"><br>
+      メールアドレス<input type="email" v-model.lazy.trim="contact.email"><br>
       性別
       <input type="radio" value="male" v-model="contact.gender">男性
       <input type="radio" value="female" v-model="contact.gender">女性
