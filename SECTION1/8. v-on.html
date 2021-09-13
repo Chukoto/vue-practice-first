@@ -16,6 +16,11 @@
   <!-- リアルDOM -->
   <button id="clickEvent" onClick="btnClicked()">リアルDOMです。クリックしてね</button>
 
+  <!-- Ajax -->
+  <form>
+    <button id="prevent" type="submit">送信</button>
+  </form>
+
   <!--仮想DOM-->
   <div id="app">
     <button v-on:click="btnClicked">v-on:clickです。クリックしてね</button>
@@ -54,6 +59,12 @@
 
     const clickEvent = document.getElementById('clickEvent');
     clickEvent.addEventListener('click', (e) => {
+      console.log(e);
+    })
+
+    const prevent = document.getElementById('prevent');
+    prevent.addEventListener('click', (e) => {
+      e.preventDefault();
       console.log(e);
     })
 
