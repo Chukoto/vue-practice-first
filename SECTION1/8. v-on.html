@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!-- リアルDOM -->
+  <button onClick="btnClicked()">リアルDOMです。クリックしてね</button>
+
+  <!--仮想DOM-->
+  <div id="app">
+    <button v-on:click="btnClicked">v-on:clickです。クリックしてね</button>
+    <button @click="btnClicked">@clickです。クリックしてね</button>
+  </div>
+
+  <script>
+    let app = new Vue({
+      el: '#app', // 仮想DOM
+      data() {
+        return {
+        }
+      },
+      methods: {
+        btnClicked() {
+          console.log('Vue: クリックされた')
+        }
+      }
+    })
+
+    function btnClicked() {
+      console.log('クリックされた')
+    }
+
+  </script>
+</body>
+
+</html>
