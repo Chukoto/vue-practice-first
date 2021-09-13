@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!-- リアルDOM -->
+
+  <!--仮想DOM-->
+  <div id="app">
+    <p>app.$data.reactiveTest = 'message'と書くと、リアクティブに、動的にsetとgetが設定されない</p>
+    <p>なので、以下のように書くことで、設定できる。</p>
+    <p>Vue.set(app.reactiveTest, 'message', 'get/set付きです')</p>
+  </div>
+
+  <script>
+    let app = new Vue({
+      el: '#app', // 仮想DOM
+      data() {
+        return {
+          reactiveTest: {
+            name: 'テスト'
+          },
+          books: [
+            {
+              id: 1,
+              title: 'タイトル1',
+              author: '著者名1',
+              url: 'https://google.com'
+            },
+            {
+              id: 2,
+              title: 'タイトル2',
+              author: '著者名2',
+              url: 'https://google.com'
+            },
+            {
+              id: 3,
+              title: 'タイトル3',
+              author: '著者名3',
+              url: 'https://google.com'
+            },
+          ]
+        }
+      },
+      watch: {
+        books: {
+          handler() {
+            console.log('変更されました')
+          },
+          deep: true
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>
