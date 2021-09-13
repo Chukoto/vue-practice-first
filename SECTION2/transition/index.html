@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="app.css">
   <title>Document</title>
   <style>
     .target {
@@ -20,6 +21,25 @@
 <body>
   <button id="is-show">JS表示/非表示</button>
   <div id="target" class="target">JS表示されています。</div>
+
+  <div id="app">
+    <button @click="isShow = !isShow">Vue表示/非表示</button>
+    <transition name="fade">
+      <div v-show="isShow">Vue表示されています。</div>
+    </transition>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          isShow: false
+        }
+      }
+    })
+  </script>
 </body>
 
 <script>
