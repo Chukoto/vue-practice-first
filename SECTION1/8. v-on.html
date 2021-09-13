@@ -14,12 +14,15 @@
 
 <body>
   <!-- リアルDOM -->
-  <button onClick="btnClicked()">リアルDOMです。クリックしてね</button>
+  <button id="clickEvent" onClick="btnClicked()">リアルDOMです。クリックしてね</button>
 
   <!--仮想DOM-->
   <div id="app">
     <button v-on:click="btnClicked">v-on:clickです。クリックしてね</button>
-    <button @click="btnClicked">@clickです。クリックしてね</button>
+    <button @click="btnClicked">@clickです。クリックしてね</button><br><br>
+    <button @click="btnClickedEvent">Eventです。クリックしてね</button>
+    <button @click="btnClickedArgs(1)">Argumentsです。クリックしてね</button><br><br>
+    <button @click="btnClickedArgsEvent(1, $event)">ArgumentsとEventです。クリックしてね</button>
   </div>
 
   <script>
@@ -32,6 +35,15 @@
       methods: {
         btnClicked() {
           console.log('Vue: クリックされた')
+        },
+        btnClickedEvent(e) {
+          console.log(e)
+        },
+        btnClickedArgs(int) {
+          console.log(int)
+        },
+        btnClickedArgsEvent(int, e) {
+          console.log(int, e)
         }
       }
     })
@@ -39,6 +51,11 @@
     function btnClicked() {
       console.log('クリックされた')
     }
+
+    const clickEvent = document.getElementById('clickEvent');
+    clickEvent.addEventListener('click', (e) => {
+      console.log(e);
+    })
 
   </script>
 </body>
