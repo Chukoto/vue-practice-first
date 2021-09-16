@@ -5,6 +5,9 @@ import BookList from '../views/BookList.vue';
 import BookDetail from '@/components/BookDetail.vue';
 import Item from '../views/Item.vue';
 import NotFound from '@/components/NotFound.vue';
+import User from '@/views/User.vue';
+import UserProfile from '@/components/UserProfile.vue';
+import UserPost from '@/components/UserPost.vue';
 
 Vue.use(VueRouter);
 
@@ -50,6 +53,21 @@ const routes = [
     // redirect: '/',
     name: 'NotFound',
     component: NotFound,
+  },
+  {
+    //ネストされたルートにしたい場合、nameは書かない。
+    path: '/user',
+    component: User,
+    children: [
+      {
+        path: 'profile',
+        component: UserProfile,
+      },
+      {
+        path: 'post',
+        component: UserPost,
+      },
+    ],
   },
 ];
 
