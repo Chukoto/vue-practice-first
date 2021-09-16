@@ -51,6 +51,9 @@ const routes = [
     path: '/item/:id',
     name: 'Item',
     component: Item,
+    
+    // ルート単位のナビゲーションガード
+    // beforeEnter: (to, from, next) => {},
   },
   {
     path: '*',
@@ -79,6 +82,13 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+// グローバルパターンのナビゲーションガード
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  console.log(from);
+  next();
 });
 
 export default router;
