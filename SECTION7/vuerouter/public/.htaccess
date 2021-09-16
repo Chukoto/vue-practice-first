@@ -1,0 +1,18 @@
+# mod_rewriteというモジュールが利用できる場合
+<IfModule mod_rewrite.c>
+  # 置換エンジンをオンにして
+  RewriteEngine On
+
+  # 置換後のベースパスを / に設定して
+  RewriteBase /
+
+  # 置換前のパスがindex.htmlと完全一致したらそれ以上置換を行わず
+  RewriteRule ^index\.html$ - [L]
+
+  # 置換前のパスが実ファイルでも実ディレクトリでもない場合
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # 置換前の文字列を/index.htmlに変換する
+  RewriteRule . /index.html [L]
+</IfModule>
