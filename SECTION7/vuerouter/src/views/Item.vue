@@ -9,9 +9,11 @@
 
 <script>
 export default {
+  // 同じコンポーネント内の移動では、ライフサイクルフックが実行されない
   created() {
     console.log('created');
   },
+  // ライフサイクルフックを実行するために、watchを使うこともある
   watch: {
     $route(to, from) {
       console.log(to);
