@@ -24,6 +24,13 @@ export default {
       ],
     };
   },
+  // コンポーネントが読み込まれるタイミングで実行されるメソッド
+  created() {
+    if (this.$route.params.id > this.books.length) {
+      // URLを変更するときは$routerを!!!!
+      this.$router.push('/book');
+    }
+  },
 };
 </script>
 
