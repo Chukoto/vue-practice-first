@@ -19,5 +19,14 @@ export default {
       this.$router.push('/');
     },
   },
+  // コンポーネント単位のナビゲーションガード
+  beforeRouteLeave(to, from, next) {
+    const checkLeave = window.confirm('本当にこのページを離れますか？');
+    if (checkLeave) {
+      next();
+    } else {
+      next(false);
+    }
+  },
 };
 </script>

@@ -2,13 +2,52 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/book">BookList</router-link> |
+      <router-link to="/item/1">Item</router-link> |
+      <router-link to="/user/profile">User</router-link>
     </div>
-    <router-view/>
+    <div class="blue-b">
+      <transition name="fade" mode="out-in">
+        <router-view />
+      </transition>
+    </div>
+    <div>
+      <transition name="fade" mode="out-in">
+        <router-view name="sub" />
+      </transition>
+    </div>
   </div>
 </template>
 
-<style>
+<style lang="scss">
+.fade {
+  &-enter {
+    transform: translate(-100px, 0);
+    opacity: 0;
+    &-to {
+      opacity: 1;
+    }
+    &-active {
+      transition: all 1s 0s ease;
+    }
+  }
+  &-leave {
+    transform: translate(0, 0);
+    opacity: 1;
+    &-to {
+      transform: translate(100px, 0);
+      opacity: 0;
+    }
+    &-active {
+      transition: all 0.5s 0s ease;
+    }
+  }
+}
+
+.blue-b {
+  border: 1px solid blue;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
