@@ -3,7 +3,7 @@
     <Header />
     <v-main>
       <v-container>
-        <router-view />
+        <router-view @add-book-list="addBook" />
       </v-container>
     </v-main>
     <Footer />
@@ -13,6 +13,8 @@
 <script>
 import Header from '@/global/Header';
 import Footer from '@/global/Footer';
+const STORAGE_KEY = 'books';
+
 export default {
   name: 'App',
 
@@ -21,8 +23,43 @@ export default {
     Footer,
   },
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      books: [],
+      newBook: null,
+    };
+  },
+  mounted() {
+    if (localStorage.getItem(STORAGE_KEY)) {
+      try {
+        this.books = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      } catch (e) {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+  },
+  methods: {
+    // addBookの引数を'e'にすることで、子の$emit / コンポーネントから渡った値を取得することができる
+    addBook(e) {
+      this.books.push({
+        id: this.books.length,
+        title: e.title,
+        image: e.image,
+        description: e.description,
+        readDate: '',
+        memo: '',
+      });
+      // this.newBook = '';
+      this.saveBooks();
+    },
+    removeBook(x) {
+      this.books.splice(x, 1);
+      this.saveBooks();
+    },
+    saveBooks() {
+      const parsed = JSON.stringify(this.books);
+      localStorage.setItem(STORAGE_KEY, parsed);
+    },
+  },
 };
 </script>
